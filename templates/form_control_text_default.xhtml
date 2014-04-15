@@ -7,7 +7,7 @@
     </td>
     <td class="col_1 col_last">
         <?php echo $this->getErrorAsHTML(); ?>
-        <input type="<?php echo $this->type; ?>" name="<?php echo $this->name; ?>" id="ctrl_<?php echo $this->id; ?>" class="text<?php echo ($this->hideInput ? ' password' : '') . (strlen($this->class) ? ' ' . $this->class : ''); ?>" value="<?php echo specialchars($this->varValue); ?>"<?php echo $this->getAttributes(); ?> />
+        <input type="<?php echo $this->type; ?>" name="<?php echo $this->name; ?>" id="ctrl_<?php echo $this->id; ?>" class="text<?php echo ($this->hideInput ? ' password' : '') . (strlen($this->class) ? ' ' . $this->class : ''); ?>" value="<?php echo specialchars($this->value); ?>"<?php echo $this->getAttributes(); ?> />
         <?php echo $this->addSubmit(); ?>
     </td>
 </tr>
@@ -16,6 +16,6 @@
 <label<?php if ($this->blnForAttribute): ?> for="ctrl_<?php echo $this->id; ?>"<?php endif; ?><?php if ($this->class != ''): ?> class="<?php echo $this->class; ?>"<?php endif; ?>><?php if ($this->mandatory): ?><span class="invisible"><?php echo $GLOBALS['TL_LANG']['MSC']['mandatory']; ?></span><?php endif; ?><?php echo $this->label; ?><?php if ($this->mandatory): ?><span class="mandatory">*</span><?php endif; ?></label>
 <?php endif; ?>
 <?php echo $this->getErrorAsHTML(); ?>
-<input type="<?php echo $this->type; ?>" name="<?php echo $this->name; ?>" id="ctrl_<?php echo $this->id; ?>" class="text<?php echo ($this->hideInput ? ' password' : '') . (strlen($this->class) ? ' ' . $this->class : ''); ?>" value="<?php echo specialchars($this->varValue); ?>"<?php echo $this->getAttributes(); ?> />
+<input type="<?php echo $this->type; ?>" name="<?php echo $this->name; ?>" id="ctrl_<?php echo $this->id; ?>" class="text<?php echo ($this->hideInput ? ' password' : '') . (strlen($this->class) ? ' ' . $this->class : ''); ?>" value="<?php echo specialchars($this->value); ?>"<?php echo $this->getAttributes(); ?> />
 <?php echo $this->addSubmit(); ?><br>
 <?php endif; ?>
