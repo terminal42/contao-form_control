@@ -41,15 +41,15 @@ ClassLoader::addClasses(array
  */
 TemplateLoader::addFiles(array
 (
-    'form_control_captcha'  => 'system/modules/form_control/templates/form_control',
-    'form_control_checkbox' => 'system/modules/form_control/templates/form_control',
-    'form_control_fieldset' => 'system/modules/form_control/templates/form_control',
-    'form_control_upload'   => 'system/modules/form_control/templates/form_control',
-    'form_control_hidden'   => 'system/modules/form_control/templates/form_control',
-    'form_control_password' => 'system/modules/form_control/templates/form_control',
-    'form_control_radio'    => 'system/modules/form_control/templates/form_control',
-    'form_control_select'   => 'system/modules/form_control/templates/form_control',
-    'form_control_submit'   => 'system/modules/form_control/templates/form_control',
-    'form_control_textarea' => 'system/modules/form_control/templates/form_control',
-    'form_control_text'     => 'system/modules/form_control/templates/form_control',
+    'form_control_captcha_default'  => 'system/modules/form_control/templates',
+    'form_control_checkbox_default' => 'system/modules/form_control/templates',
+    'form_control_fieldset_default' => 'system/modules/form_control/templates',
+    'form_control_upload_default'   => 'system/modules/form_control/templates',
+    'form_control_hidden_default'   => 'system/modules/form_control/templates',
+    'form_control_password_default' => 'system/modules/form_control/templates',
+    'form_control_radio_default'    => 'system/modules/form_control/templates',
+    'form_control_select_default'   => 'system/modules/form_control/templates',
+    'form_control_submit_default'   => 'system/modules/form_control/templates',
+    'form_control_textarea_default' => 'system/modules/form_control/templates',
+    'form_control_text_default'     => 'system/modules/form_control/templates',
 ));

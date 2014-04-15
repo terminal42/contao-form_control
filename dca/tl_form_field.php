@@ -32,21 +32,9 @@ $GLOBALS['TL_DCA']['tl_form_field']['fields']['formcontrol_template'] = array
     'label'                   => &$GLOBALS['TL_LANG']['tl_form_field']['formcontrol_template'],
     'exclude'                 => true,
     'inputType'               => 'select',
-    'options_callback'        => array('tl_form_field_form_control', 'getFormControlTemplates'),
+    'options_callback'        => function($dc) {
+            return \Controller::getTemplateGroup('form_control_' . $dc->activeRecord->type . '_');
+        },
     'eval'                    => array('includeBlankOption'=>true, 'chosen'=>true, 'tl_class'=>'w50'),
     'sql'                     => "varchar(64) NOT NULL default ''"
 );
-
-
-class tl_form_field_form_control extends \Backend
-{
-
-    /**
-     * Return all form control templates as array
-     * @return array
-     */
-    public function getFormControlTemplates()
-    {
-        return $this->getTemplateGroup('form_control_');
-    }
-}
