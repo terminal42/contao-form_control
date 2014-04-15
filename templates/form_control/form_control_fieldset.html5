@@ -1,6 +1,13 @@
+<?php if ($this->tableless): ?>
 
-<?php if ($this->type == 'fsStart'): ?>
+<?php if (TL_MODE == 'BE'): ?>
+<?php echo $this->generate(); ?>
+<?php else: ?>
+<?php if ($this->fsType == 'fsStart'): ?>
 <fieldset<?php if ($this->strClass): ?> class="<?php echo $this->strClass; ?>"<?php endif; ?>><?php if ($this->label != ''): ?><legend><?php echo $this->label; ?></legend><?php endif; ?>
 <?php else: ?>
 </fieldset>
+<?php endif; ?>
+<?php endif; ?>
+
 <?php endif; ?>

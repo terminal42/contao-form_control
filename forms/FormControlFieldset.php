@@ -15,30 +15,18 @@ namespace FormControl;
 class FormControlFieldset extends \FormFieldset
 {
 
-	/**
-	 * Generate the widget and return it as string
-	 * @return string
-	 */
-	public function generate()
-	{
-        if (!$this->formcontrol_template || TL_MODE == 'BE')
+    /**
+     * Parse the template file and return it as string
+     * @param array
+     * @return string
+     */
+    public function parse($arrAttributes=null)
+    {
+        if ($this->formcontrol_template)
         {
-            return parent::generate();
+            $this->strTemplate = $this->formcontrol_template;
         }
 
-		// Only tableless forms are supported
-		if (!$this->tableless)
-		{
-			return '';
-		}
-
-        $objTemplate = new \FrontendTemplate($this->formcontrol_template);
-        $objTemplate->attributesRaw = $this->arrAttributes;
-        $objTemplate->configuration = $this->arrConfiguration;
-        $objTemplate->type = $this->fsType;
-        $objTemplate->class = $this->strClass;
-        $objTemplate->label = $this->label;
-
-        return $objTemplate->parse();
-	}
+        return parent::parse($arrAttributes);
+    }
 }

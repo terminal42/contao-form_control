@@ -15,23 +15,18 @@ namespace FormControl;
 class FormControlHidden extends \FormHidden
 {
 
-	/**
-	 * Generate the widget and return it as string
-	 * @return string
-	 */
-	public function generate()
-	{
-        if (!$this->formcontrol_template)
+    /**
+     * Parse the template file and return it as string
+     * @param array
+     * @return string
+     */
+    public function parse($arrAttributes=null)
+    {
+        if ($this->formcontrol_template)
         {
-            return parent::generate();
+            $this->strTemplate = $this->formcontrol_template;
         }
 
-        $objTemplate = new \FrontendTemplate($this->formcontrol_template);
-        $objTemplate->attributesRaw = $this->arrAttributes;
-        $objTemplate->configuration = $this->arrConfiguration;
-        $objTemplate->name = $this->strName;
-        $objTemplate->value = specialchars($this->varValue);
-
-        return $objTemplate->parse();
-	}
+        return parent::parse($arrAttributes);
+    }
 }

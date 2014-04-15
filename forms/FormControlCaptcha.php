@@ -15,27 +15,23 @@ namespace FormControl;
 class FormControlCaptcha extends \FormCaptcha
 {
 
-	/**
-	 * Generate the widget and return it as string
-	 * @return string
-	 */
-	public function generate()
-	{
-        if (!$this->formcontrol_template)
+    /**
+     * Parse the template file and return it as string
+     * @param array
+     * @return string
+     */
+    public function parse($arrAttributes=null)
+    {
+        if ($this->formcontrol_template)
         {
-            return parent::generate();
+            $this->strTemplate = $this->formcontrol_template;
+
+            if ($this->strQuestion == '')
+            {
+                $this->setQuestion();
+            }
         }
 
-        $objTemplate = new \FrontendTemplate($this->formcontrol_template);
-        $objTemplate->attributesRaw = $this->arrAttributes;
-        $objTemplate->configuration = $this->arrConfiguration;
-        $objTemplate->type = 'input';
-        $objTemplate->name = $this->strCaptchaKey;
-        $objTemplate->id = $this->strId;
-        $objTemplate->class = (strlen($this->strClass) ? ' ' . $this->strClass : '');
-        $objTemplate->attributes = $this->getAttributes();
-        $objTemplate->submit = $this->addSubmit();
-
-        return $objTemplate->parse();
-	}
+        return parent::parse($arrAttributes);
+    }
 }

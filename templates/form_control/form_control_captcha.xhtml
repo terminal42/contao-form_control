@@ -1,4 +1,23 @@
-
-<input type="text" name="<?php echo $this->name; ?>" id="ctrl_<?php echo $this->id; ?>" class="captcha mandatory<?php echo $this->class; ?>" value=""<?php echo $this->attributes; ?> />
-
-<?php echo $this->submit; ?>
+<?php if (!$this->tableless): ?>
+<tr class="<?php echo $this->rowClass; ?>">
+    <td class="col_0 col_first">
+        <?php if ($this->strLabel): ?>
+        <label for="ctrl_<?php echo $this->strId; ?>" class="mandatory<?php echo (strlen($this->strClass) ? ' ' . $this->strClass : ''); ?>"><span class="invisible"><?php echo $GLOBALS['TL_LANG']['MSC']['mandatory']; ?></span><?php echo $this->strLabel; ?><span class="mandatory">*</span> <span class="invisible"><?php echo $this->strQuestion; ?></span></label>
+        <?php endif; ?>
+    </td>
+    <td class="col_1 col_last">
+        <input type="text" name="<?php echo $this->strCaptchaKey; ?>" id="ctrl_<?php echo $this->strId; ?>" class="captcha mandatory<?php echo (strlen($this->strClass) ? ' ' . $this->strClass : ''); ?>" value=""<?php echo $this->getAttributes(); ?> />
+        <?php echo $this->getErrorAsHTML(); ?>
+        <span class="captcha_text<?php echo (strlen($this->strClass) ? ' ' . $this->strClass : ''); ?>"><?php echo $this->strQuestion; ?></span>
+        <?php echo $this->addSubmit(); ?>
+    </td>
+</tr>
+<?php else: ?>
+<?php if ($this->strLabel): ?>
+<label for="ctrl_<?php echo $this->strId; ?>" class="mandatory<?php echo (strlen($this->strClass) ? ' ' . $this->strClass : ''); ?>"><span class="invisible"><?php echo $GLOBALS['TL_LANG']['MSC']['mandatory']; ?></span><?php echo $this->strLabel; ?><span class="mandatory">*</span> <span class="invisible"><?php echo $this->strQuestion; ?></span></label>
+<?php endif; ?>
+<?php echo $this->getErrorAsHTML(); ?>
+<input type="text" name="<?php echo $this->strCaptchaKey; ?>" id="ctrl_<?php echo $this->strId; ?>" class="captcha mandatory<?php echo (strlen($this->strClass) ? ' ' . $this->strClass : ''); ?>" value=""<?php echo $this->getAttributes(); ?> />
+<span class="captcha_text<?php echo (strlen($this->strClass) ? ' ' . $this->strClass : ''); ?>"><?php echo $this->strQuestion; ?></span>
+<?php echo $this->addSubmit(); ?><br>
+<?php endif; ?>

@@ -16,69 +16,61 @@ class FormControlTextField extends \FormTextField
 {
 
     /**
-     * Generate the widget and return it as string
+     * Parse the template file and return it as string
+     * @param array
      * @return string
      */
-    public function generate()
+    public function parse($arrAttributes=null)
     {
-        if (!$this->formcontrol_template)
+        if ($this->formcontrol_template)
         {
-            return parent::generate();
-        }
+            $this->strTemplate = $this->formcontrol_template;
 
-        // Hide the Punycode format (see #2750)
-        if ($this->rgxp == 'email' || $this->rgxp == 'friendly' || $this->rgxp == 'url')
-        {
-            $this->varValue = \Idna::decode($this->varValue);
-        }
-
-        if ($this->hideInput)
-        {
-            $strType = 'password';
-        }
-        elseif ($this->strFormat != 'xhtml')
-        {
-            // Use the HTML5 types (see #4138)
-            // but not the date, time and datetime types (see #5918)
-            switch ($this->rgxp)
+            // Hide the Punycode format (see #2750)
+            if ($this->rgxp == 'email' || $this->rgxp == 'friendly' || $this->rgxp == 'url')
             {
-                case 'digit':
-                    $strType = 'number';
-                    break;
-
-                case 'phone':
-                    $strType = 'tel';
-                    break;
-
-                case 'email':
-                    $strType = 'email';
-                    break;
-
-                case 'url':
-                    $strType = 'url';
-                    break;
-
-                default:
-                    $strType = 'text';
-                    break;
+                $this->varValue = \Idna::decode($this->varValue);
             }
-        }
-        else
-        {
-            $strType = 'text';
+
+            if ($this->hideInput)
+            {
+                $strType = 'password';
+            }
+            elseif ($this->strFormat != 'xhtml')
+            {
+                // Use the HTML5 types (see #4138)
+                // but not the date, time and datetime types (see #5918)
+                switch ($this->rgxp)
+                {
+                    case 'digit':
+                        $strType = 'number';
+                        break;
+
+                    case 'phone':
+                        $strType = 'tel';
+                        break;
+
+                    case 'email':
+                        $strType = 'email';
+                        break;
+
+                    case 'url':
+                        $strType = 'url';
+                        break;
+
+                    default:
+                        $strType = 'text';
+                        break;
+                }
+            }
+            else
+            {
+                $strType = 'text';
+            }
+
+            $this->type = $strType;
         }
 
-        $objTemplate = new \FrontendTemplate($this->formcontrol_template);
-        $objTemplate->attributesRaw = $this->arrAttributes;
-        $objTemplate->configuration = $this->arrConfiguration;
-        $objTemplate->name = $this->strName;
-        $objTemplate->id = $this->strId;
-        $objTemplate->value = specialchars($this->varValue);
-        $objTemplate->class = ($this->hideInput ? ' password' : '') . (strlen($this->strClass) ? ' ' . $this->strClass : '');
-        $objTemplate->type = $strType;
-        $objTemplate->attributes = $this->getAttributes();
-        $objTemplate->submit = $this->addSubmit();
-
-        return $objTemplate->parse();
+        return parent::parse($arrAttributes);
     }
 }

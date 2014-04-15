@@ -16,95 +16,88 @@ class FormControlSelectMenu extends \FormSelectMenu
 {
 
     /**
-     * Generate the widget and return it as string
+     * Parse the template file and return it as string
+     * @param array
      * @return string
      */
-    public function generate()
+    public function parse($arrAttributes=null)
     {
-        if (!$this->formcontrol_template)
+        if ($this->formcontrol_template)
         {
-            return parent::generate();
-        }
+            $this->strTemplate = $this->formcontrol_template;
+            $strClass = 'select';
+            $blnHasGroups = false;
 
-        $strClass = 'select';
-        $blnHasGroups = false;
-
-        if ($this->multiple)
-        {
-            $this->strName .= '[]';
-            $strClass = 'multiselect';
-        }
-
-        // Make sure there are no multiple options in single mode
-        elseif (is_array($this->varValue))
-        {
-            $this->varValue = $this->varValue[0];
-        }
-
-        // Add empty option (XHTML) if there are none
-        if (empty($this->arrOptions))
-        {
-            $this->arrOptions = array(array('value'=>'', 'label'=>'-'));
-        }
-
-        // Chosen
-        if ($this->chosen)
-        {
-            $strClass .= ' tl_chosen';
-        }
-
-        $objTemplate = new \FrontendTemplate($this->formcontrol_template);
-        $objTemplate->attributesRaw = $this->arrAttributes;
-        $objTemplate->configuration = $this->arrConfiguration;
-        $objTemplate->name = $this->strName;
-        $objTemplate->id = $this->strId;
-        $objTemplate->class = $strClass . (strlen($this->strClass) ? ' ' . $this->strClass : '');
-        $objTemplate->attributes = $this->getAttributes();
-        $objTemplate->submit = $this->addSubmit();
-        $arrOptions = array();
-
-        // Generate options
-        foreach ($this->arrOptions as $arrOption)
-        {
-            if ($arrOption['group'])
+            if ($this->multiple)
             {
-                if ($blnHasGroups)
+                $this->strName .= '[]';
+                $strClass = 'multiselect';
+            }
+
+            // Make sure there are no multiple options in single mode
+            elseif (is_array($this->varValue))
+            {
+                $this->varValue = $this->varValue[0];
+            }
+
+            // Add empty option (XHTML) if there are none
+            if (empty($this->arrOptions))
+            {
+                $this->arrOptions = array(array('value'=>'', 'label'=>'-'));
+            }
+
+            // Chosen
+            if ($this->chosen)
+            {
+                $strClass .= ' tl_chosen';
+            }
+
+            $this->class = $strClass . (strlen($this->strClass) ? ' ' . $this->strClass : '');
+            $arrOptions = array();
+
+            // Generate options
+            foreach ($this->arrOptions as $arrOption)
+            {
+                if ($arrOption['group'])
                 {
+                    if ($blnHasGroups)
+                    {
+                        $arrOptions[] = array
+                        (
+                            'type' => 'group_end'
+                        );
+                    }
+
                     $arrOptions[] = array
                     (
-                        'type' => 'group_end'
+                        'type' => 'group_start',
+                        'label' => specialchars($arrOption['label'])
                     );
+
+                    $blnHasGroups = true;
+                    continue;
                 }
 
                 $arrOptions[] = array
                 (
-                    'type' => 'group_start',
-                    'label' => specialchars($arrOption['label'])
+                    'type' => 'option',
+                    'value' => $arrOption['value'],
+                    'selected' => $this->isSelected($arrOption),
+                    'label' => $arrOption['label'],
                 );
-
-                $blnHasGroups = true;
-                continue;
             }
 
-            $arrOptions[] = array
-            (
-                'type' => 'option',
-                'value' => $arrOption['value'],
-                'selected' => $this->isSelected($arrOption),
-                'label' => $arrOption['label'],
-            );
+            if ($blnHasGroups)
+            {
+                $arrOptions[] = array
+                (
+                    'type' => 'group_end'
+                );
+            }
+
+            $this->options = $arrOptions;
         }
 
-        if ($blnHasGroups)
-        {
-            $arrOptions[] = array
-            (
-                'type' => 'group_end'
-            );
-        }
-
-        $objTemplate->options = $arrOptions;
-        $objTemplate->optionsRaw = $this->arrOptions;
-        return $objTemplate->parse();
+        return parent::parse($arrAttributes);
     }
 }

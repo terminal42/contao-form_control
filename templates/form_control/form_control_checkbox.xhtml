@@ -1,20 +1,44 @@
+<?php if (!$this->tableless): ?>
+<tr class="<?php echo $this->rowClass; ?>">
+    <td class="col_0 col_first">&nbsp;</td>
+    <td class="col_1 col_last">
+        <fieldset id="ctrl_<?php echo $this->strId; ?>" class="checkbox_container<?php echo (strlen($this->strClass) ? ' ' . $this->strClass : ''); ?>">
+            <?php if ($this->strLabel): ?>
+            <?php if ($this->mandatory): ?>
+            <legend><span class="invisible"><?php echo $GLOBALS['TL_LANG']['MSC']['mandatory']; ?></span> <?php echo $this->strLabel; ?><span class="mandatory">*</span></legend>
+            <?php else: ?>
+            <legend><?php echo $this->strLabel; ?></legend>
+            <?php endif; ?>
+            <?php endif; ?>
 
-<fieldset id="ctrl_<?php echo $this->id; ?>" class="checkbox_container<?php echo $this->class; ?>">
-    <?php if ($this->label): ?>
+            <?php echo $this->getErrorAsHTML(); ?>
+
+            <input type="hidden" name="<?php echo $this->strName; ?>" value="" />
+
+            <?php foreach ($this->options as $option): ?>
+            <span><input type="checkbox" name="<?php echo $option['name']; ?>" id="opt_<?php echo $option['id']; ?>" class="checkbox" value="<?php echo $option['value']; ?>"<?php echo $option['checked']; ?><?php echo $option['attributes']; ?> /> <label id="lbl_<?php echo $option['label_id']; ?>" for="opt_<?php echo $option['label_for']; ?>"><?php echo $option['label']; ?></label></span>
+            <?php endforeach; ?>
+        </fieldset>
+        <?php echo $this->addSubmit(); ?>
+    </td>
+</tr>
+<?php else: ?>
+<fieldset id="ctrl_<?php echo $this->strId; ?>" class="checkbox_container<?php echo (strlen($this->strClass) ? ' ' . $this->strClass : ''); ?>">
+    <?php if ($this->strLabel): ?>
     <?php if ($this->mandatory): ?>
-    <legend><span class="invisible"><?php echo $this->mandatoryLabel; ?></span> <?php echo $this->label; ?><span class="mandatory">*</span></legend>
+    <legend><span class="invisible"><?php echo $GLOBALS['TL_LANG']['MSC']['mandatory']; ?></span> <?php echo $this->strLabel; ?><span class="mandatory">*</span></legend>
     <?php else: ?>
-    <legend><?php echo $this->label; ?></legend>
+    <legend><?php echo $this->strLabel; ?></legend>
     <?php endif; ?>
     <?php endif; ?>
 
-    <?php echo $this->error; ?>
+    <?php echo $this->getErrorAsHTML(); ?>
 
-    <input type="hidden" name="<?php echo $this->name; ?>" value="" />
+    <input type="hidden" name="<?php echo $this->strName; ?>" value="" />
 
     <?php foreach ($this->options as $option): ?>
     <span><input type="checkbox" name="<?php echo $option['name']; ?>" id="opt_<?php echo $option['id']; ?>" class="checkbox" value="<?php echo $option['value']; ?>"<?php echo $option['checked']; ?><?php echo $option['attributes']; ?> /> <label id="lbl_<?php echo $option['label_id']; ?>" for="opt_<?php echo $option['label_for']; ?>"><?php echo $option['label']; ?></label></span>
     <?php endforeach; ?>
 </fieldset>
-
-<?php echo $this->submit; ?>
+<?php echo $this->addSubmit(); ?>
+<?php endif; ?>

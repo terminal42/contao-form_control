@@ -15,48 +15,36 @@ namespace FormControl;
 class FormControlRadioButton extends \FormRadioButton
 {
 
-	/**
-	 * Generate the widget and return it as string
-	 * @return string
-	 */
-	public function generate()
-	{
-        if (!$this->formcontrol_template)
+    /**
+     * Parse the template file and return it as string
+     * @param array
+     * @return string
+     */
+    public function parse($arrAttributes=null)
+    {
+        if ($this->formcontrol_template)
         {
-            return parent::generate();
+            $this->strTemplate = $this->formcontrol_template;
+
+            // Generate options
+            foreach ($this->arrOptions as $i => $arrOption)
+            {
+                $arrOptions[] = array
+                (
+                    'name' => $this->strName . ((count($this->arrOptions) > 1) ? '[]' : ''),
+                    'id' => $this->strId.'_'.$i,
+                    'value' => $arrOption['value'],
+                    'checked' => $this->isChecked($arrOption),
+                    'attributes' => $this->getAttributes(),
+                    'label' => $arrOption['label'],
+                    'label_id' => $this->strId.'_'.$i,
+                    'label_for' => $this->strId.'_'.$i,
+                );
+            }
+
+            $this->options = $arrOptions;
         }
 
-        $objTemplate = new \FrontendTemplate($this->formcontrol_template);
-        $objTemplate->attributesRaw = $this->arrAttributes;
-        $objTemplate->configuration = $this->arrConfiguration;
-        $objTemplate->name = $this->strName;
-        $objTemplate->id = $this->strId;
-        $objTemplate->class = (strlen($this->strClass) ? ' ' . $this->strClass : '');
-        $objTemplate->label = $this->strLabel;
-        $objTemplate->mandatory = $this->mandatory;
-        $objTemplate->mandatoryLabel = $GLOBALS['TL_LANG']['MSC']['mandatory'];
-        $objTemplate->error = $this->strError;
-        $objTemplate->submit = $this->addSubmit();
-        $arrOptions = array();
-
-        // Generate options
-        foreach ($this->arrOptions as $i => $arrOption)
-        {
-            $arrOptions[] = array
-            (
-                'name' => $this->strName . ((count($this->arrOptions) > 1) ? '[]' : ''),
-                'id' => $this->strId.'_'.$i,
-                'value' => $arrOption['value'],
-                'checked' => $this->isChecked($arrOption),
-                'attributes' => $this->getAttributes(),
-                'label' => $arrOption['label'],
-                'label_id' => $this->strId.'_'.$i,
-                'label_for' => $this->strId.'_'.$i,
-            );
-        }
-
-        $objTemplate->options = $arrOptions;
-        $objTemplate->optionsRaw = $this->arrOptions;
-        return $objTemplate->parse();
-	}
+        return parent::parse($arrAttributes);
+    }
 }

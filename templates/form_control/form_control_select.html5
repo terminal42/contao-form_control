@@ -1,5 +1,36 @@
+<?php if (!$this->tableless): ?>
+<tr class="<?php echo $this->rowClass; ?>">
+    <td class="col_0 col_first">
+        <?php if ($this->strLabel): ?>
+        <label<?php if ($this->blnForAttribute): ?> for="ctrl_<?php echo $this->strId; ?>"<?php endif; ?><?php if ($this->strClass != ''): ?> class="<?php echo $this->strClass; ?>"<?php endif; ?>><?php if ($this->mandatory): ?><span class="invisible"><?php echo $GLOBALS['TL_LANG']['MSC']['mandatory']; ?></span><?php endif; ?><?php echo $this->strLabel; ?><?php if ($this->mandatory): ?><span class="mandatory">*</span><?php endif; ?></label>
+        <?php endif; ?>
+    </td>
+    <td class="col_1 col_last">
+        <?php echo $this->getErrorAsHTML(); ?>
+        <select name="<?php echo $this->strName; ?>" id="ctrl_<?php echo $this->strId; ?>" class="<?php echo $this->class; ?>"<?php echo $this->getAttributes(); ?>>
+            <?php foreach ($this->options as $option): ?>
+            <?php if ($option['type'] == 'group_start'): ?>
+            <optgroup label="<?php echo $option['label']; ?>">
+            <?php endif; ?>
 
-<select name="<?php echo $this->name; ?>" id="ctrl_<?php echo $this->id; ?>" class="<?php echo $this->class; ?>"<?php echo $this->attributes; ?>>
+            <?php if ($option['type'] == 'option'): ?>
+            <option value="<?php echo $option['value']; ?>"<?php echo $option['selected']; ?>><?php echo $option['label']; ?></option>
+            <?php endif; ?>
+
+            <?php if ($option['type'] == 'group_end'): ?>
+            </optgroup>
+            <?php endif; ?>
+            <?php endforeach; ?>
+        </select>
+        <?php echo $this->addSubmit(); ?>
+    </td>
+</tr>
+<?php else: ?>
+<?php if ($this->strLabel): ?>
+<label<?php if ($this->blnForAttribute): ?> for="ctrl_<?php echo $this->strId; ?>"<?php endif; ?><?php if ($this->strClass != ''): ?> class="<?php echo $this->strClass; ?>"<?php endif; ?>><?php if ($this->mandatory): ?><span class="invisible"><?php echo $GLOBALS['TL_LANG']['MSC']['mandatory']; ?></span><?php endif; ?><?php echo $this->strLabel; ?><?php if ($this->mandatory): ?><span class="mandatory">*</span><?php endif; ?></label>
+<?php endif; ?>
+<?php echo $this->getErrorAsHTML(); ?>
+<select name="<?php echo $this->strName; ?>" id="ctrl_<?php echo $this->strId; ?>" class="<?php echo $this->class; ?>"<?php echo $this->getAttributes(); ?>>
     <?php foreach ($this->options as $option): ?>
     <?php if ($option['type'] == 'group_start'): ?>
     <optgroup label="<?php echo $option['label']; ?>">
@@ -14,5 +45,5 @@
     <?php endif; ?>
     <?php endforeach; ?>
 </select>
-
-<?php echo $this->submit; ?>
+<?php echo $this->addSubmit(); ?><br>
+<?php endif; ?>

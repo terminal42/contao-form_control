@@ -15,47 +15,38 @@ namespace FormControl;
 class FormControlSubmit extends \FormSubmit
 {
 
-	/**
-	 * Generate the widget and return it as string
-	 * @return string
-	 */
-	public function generate()
-	{
-        if (!$this->formcontrol_template)
+    /**
+     * Parse the template file and return it as string
+     * @param array
+     * @return string
+     */
+    public function parse($arrAttributes=null)
+    {
+        if ($this->formcontrol_template)
         {
-            return parent::generate();
+            $this->strTemplate = $this->formcontrol_template;
+            $this->type = 'regular';
+
+            // Image button
+    		if ($this->imageSubmit && $this->singleSRC != '')
+    		{
+    			$objModel = \FilesModel::findByUuid($this->singleSRC);
+
+    			if ($objModel === null)
+    			{
+    				if (!\Validator::isUuid($this->singleSRC))
+    				{
+    					return '<p class="error">'.$GLOBALS['TL_LANG']['ERR']['version2format'].'</p>';
+    				}
+    			}
+    			elseif (is_file(TL_ROOT . '/' . $objModel->path))
+    			{
+                    $this->type = 'image';
+                    $this->src = $objModel->path;
+    			}
+    		}
         }
 
-        $objTemplate = new \FrontendTemplate($this->formcontrol_template);
-        $objTemplate->attributesRaw = $this->arrAttributes;
-        $objTemplate->configuration = $this->arrConfiguration;
-        $objTemplate->type = 'regular';
-        $objTemplate->id = $this->strId;
-        $objTemplate->class = (strlen($this->strClass) ? ' ' . $this->strClass : '');
-        $objTemplate->value = specialchars($this->slabel);
-        $objTemplate->attributes = $this->getAttributes($arrStrip);
-
-        // Image button
-		if ($this->imageSubmit && $this->singleSRC != '')
-		{
-			$objModel = \FilesModel::findByUuid($this->singleSRC);
-
-			if ($objModel === null)
-			{
-				if (!\Validator::isUuid($this->singleSRC))
-				{
-					return '<p class="error">'.$GLOBALS['TL_LANG']['ERR']['version2format'].'</p>';
-				}
-			}
-			elseif (is_file(TL_ROOT . '/' . $objModel->path))
-			{
-                $objTemplate->type = 'image';
-                $objTemplate->src = $objModel->path;
-                $objTemplate->title = specialchars($this->slabel);
-                $objTemplate->alt = specialchars($this->slabel);
-			}
-		}
-
-        return $objTemplate->parse();
-	}
+        return parent::parse($arrAttributes);
+    }
 }
