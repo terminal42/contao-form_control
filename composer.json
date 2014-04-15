@@ -1,0 +1,25 @@
+{
+    "name":"terminal42/contao-form_control",
+    "description":"Gives you full control over the way the Contao core form fields are being rendered.",
+    "keywords":["contao", "template", "form", "field"],
+    "type":"contao-module",
+    "license":"LGPL-3.0+",
+    "authors":[
+        {
+            "name":"terminal42 gmbh",
+            "homepage":"http://terminal42.ch"
+        }
+    ],
+    "require":{
+        "php":">=5.4.0",
+        "contao/core":">=3.2",
+        "contao-community-alliance/composer-installer":"*"
+    },
+    "extra":{
+        "contao": {
+            "sources":{
+                "": "system/modules/form_control"
+            }
+        }
+    }
+}
