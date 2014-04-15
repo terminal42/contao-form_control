@@ -12,9 +12,9 @@
 namespace FormControl;
 
 
-class FormControlCheckBox extends \FormCheckBox
+class RadioButton extends \FormRadioButton
 {
-    use FormControlHelperTrait;
+    use HelperTrait;
 
     /**
      * Parse the template file and return it as string
@@ -25,11 +25,6 @@ class FormControlCheckBox extends \FormCheckBox
     {
         if ($this->formcontrol_template) {
             $this->strTemplate = $this->formcontrol_template;
-
-            // The "required" attribute only makes sense for single checkboxes
-            if (count($this->arrOptions) == 1 && $this->mandatory) {
-                $this->arrAttributes['required'] = 'required';
-            }
 
             // Generate options
             foreach ($this->arrOptions as $i => $arrOption) {

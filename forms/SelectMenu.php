@@ -12,9 +12,9 @@
 namespace FormControl;
 
 
-class FormControlSelectMenu extends \FormSelectMenu
+class SelectMenu extends \FormSelectMenu
 {
-    use FormControlHelperTrait;
+    use HelperTrait;
 
     /**
      * Parse the template file and return it as string

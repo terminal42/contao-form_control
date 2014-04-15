@@ -11,7 +11,7 @@
 
 namespace FormControl;
 
-trait FormControlHelperTrait
+trait HelperTrait
 {
     private $arrStorage = array();
 

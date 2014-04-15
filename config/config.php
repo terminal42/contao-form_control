@@ -13,14 +13,14 @@
 /**
  * Form fields
  */
-$GLOBALS['TL_FFL']['captcha']   = 'FormControl\FormControlCaptcha';
-$GLOBALS['TL_FFL']['checkbox']  = 'FormControl\FormControlCheckBox';
-$GLOBALS['TL_FFL']['fieldset']  = 'FormControl\FormControlFieldset';
-$GLOBALS['TL_FFL']['hidden']    = 'FormControl\FormControlHidden';
-$GLOBALS['TL_FFL']['password']  = 'FormControl\FormControlPassword';
-$GLOBALS['TL_FFL']['radio']     = 'FormControl\FormControlRadioButton';
-$GLOBALS['TL_FFL']['submit']    = 'FormControl\FormControlSubmit';
-$GLOBALS['TL_FFL']['select']    = 'FormControl\FormControlSelectMenu';
-$GLOBALS['TL_FFL']['text']      = 'FormControl\FormControlTextField';
-$GLOBALS['TL_FFL']['textarea']  = 'FormControl\FormControlTextArea';
-$GLOBALS['TL_FFL']['upload']    = 'FormControl\FormControlFileUpload';
+$GLOBALS['TL_FFL']['captcha']   = 'FormControl\Captcha';
+$GLOBALS['TL_FFL']['checkbox']  = 'FormControl\CheckBox';
+$GLOBALS['TL_FFL']['fieldset']  = 'FormControl\Fieldset';
+$GLOBALS['TL_FFL']['hidden']    = 'FormControl\Hidden';
+$GLOBALS['TL_FFL']['password']  = 'FormControl\Password';
+$GLOBALS['TL_FFL']['radio']     = 'FormControl\RadioButton';
+$GLOBALS['TL_FFL']['submit']    = 'FormControl\Submit';
+$GLOBALS['TL_FFL']['select']    = 'FormControl\SelectMenu';
+$GLOBALS['TL_FFL']['text']      = 'FormControl\TextField';
+$GLOBALS['TL_FFL']['textarea']  = 'FormControl\TextArea';
+$GLOBALS['TL_FFL']['upload']    = 'FormControl\FileUpload';

@@ -12,9 +12,9 @@
 namespace FormControl;
 
 
-class FormControlHidden extends \FormHidden
+class TextArea extends \FormTextArea
 {
-    use FormControlHelperTrait;
+    use HelperTrait;
 
     /**
      * Parse the template file and return it as string
@@ -25,6 +25,16 @@ class FormControlHidden extends \FormHidden
     {
         if ($this->formcontrol_template) {
             $this->strTemplate = $this->formcontrol_template;
+            global $objPage;
+            $arrStrip = array();
+
+            // XHTML does not support maxlength
+            if ($objPage->outputFormat == 'xhtml') {
+                $arrStrip[] = 'maxlength';
+            }
+
+            $this->fieldValue = specialchars(str_replace('\n', "\n", $this->varValue));
+            $this->fieldAttributes = $this->getAttributes($arrStrip);
         }
 
         return parent::parse($arrAttributes);

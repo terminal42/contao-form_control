@@ -12,9 +12,9 @@
 namespace FormControl;
 
 
-class FormControlTextArea extends \FormTextArea
+class FileUpload extends \FormFileUpload
 {
-    use FormControlHelperTrait;
+    use HelperTrait;
 
     /**
      * Parse the template file and return it as string
@@ -25,16 +25,6 @@ class FormControlTextArea extends \FormTextArea
     {
         if ($this->formcontrol_template) {
             $this->strTemplate = $this->formcontrol_template;
-            global $objPage;
-            $arrStrip = array();
-
-            // XHTML does not support maxlength
-            if ($objPage->outputFormat == 'xhtml') {
-                $arrStrip[] = 'maxlength';
-            }
-
-            $this->fieldValue = specialchars(str_replace('\n', "\n", $this->varValue));
-            $this->fieldAttributes = $this->getAttributes($arrStrip);
         }
 
         return parent::parse($arrAttributes);

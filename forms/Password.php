@@ -12,9 +12,9 @@
 namespace FormControl;
 
 
-class FormControlFileUpload extends \FormFileUpload
+class Password extends \FormPassword
 {
-    use FormControlHelperTrait;
+    use HelperTrait;
 
     /**
      * Parse the template file and return it as string

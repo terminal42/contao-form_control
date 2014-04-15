@@ -9,30 +9,23 @@
  * @link       http://github.com/terminal42/contao-form_control
  */
 
-
-/**
- * Register the namespace
- */
-ClassLoader::addNamespace('FormControl');
-
-
 /**
  * Register the classes
  */
 ClassLoader::addClasses(array
 (
-    'FormControl\FormControlHelperTrait'    => 'system/modules/form_control/forms/FormControlHelperTrait.php',
-    'FormControl\FormControlCaptcha'        => 'system/modules/form_control/forms/FormControlCaptcha.php',
-    'FormControl\FormControlCheckBox'       => 'system/modules/form_control/forms/FormControlCheckBox.php',
-    'FormControl\FormControlFieldset'       => 'system/modules/form_control/forms/FormControlFieldset.php',
-    'FormControl\FormControlFileUpload'     => 'system/modules/form_control/forms/FormControlFileUpload.php',
-    'FormControl\FormControlHidden'         => 'system/modules/form_control/forms/FormControlHidden.php',
-    'FormControl\FormControlPassword'       => 'system/modules/form_control/forms/FormControlPassword.php',
-    'FormControl\FormControlRadioButton'    => 'system/modules/form_control/forms/FormControlRadioButton.php',
-    'FormControl\FormControlSelectMenu'     => 'system/modules/form_control/forms/FormControlSelectMenu.php',
-    'FormControl\FormControlSubmit'         => 'system/modules/form_control/forms/FormControlSubmit.php',
-    'FormControl\FormControlTextArea'       => 'system/modules/form_control/forms/FormControlTextArea.php',
-    'FormControl\FormControlTextField'      => 'system/modules/form_control/forms/FormControlTextField.php',
+    'FormControl\HelperTrait'    => 'system/modules/form_control/forms/HelperTrait.php',
+    'FormControl\Captcha'        => 'system/modules/form_control/forms/Captcha.php',
+    'FormControl\CheckBox'       => 'system/modules/form_control/forms/CheckBox.php',
+    'FormControl\Fieldset'       => 'system/modules/form_control/forms/Fieldset.php',
+    'FormControl\FileUpload'     => 'system/modules/form_control/forms/FileUpload.php',
+    'FormControl\Hidden'         => 'system/modules/form_control/forms/Hidden.php',
+    'FormControl\Password'       => 'system/modules/form_control/forms/Password.php',
+    'FormControl\RadioButton'    => 'system/modules/form_control/forms/RadioButton.php',
+    'FormControl\SelectMenu'     => 'system/modules/form_control/forms/SelectMenu.php',
+    'FormControl\Submit'         => 'system/modules/form_control/forms/Submit.php',
+    'FormControl\TextArea'       => 'system/modules/form_control/forms/TextArea.php',
+    'FormControl\TextField'      => 'system/modules/form_control/forms/TextField.php',
 ));
 
 

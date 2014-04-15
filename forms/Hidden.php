@@ -12,9 +12,9 @@
 namespace FormControl;
 
 
-class FormControlCaptcha extends \FormCaptcha
+class Hidden extends \FormHidden
 {
-    use FormControlHelperTrait;
+    use HelperTrait;
 
     /**
      * Parse the template file and return it as string
@@ -25,10 +25,6 @@ class FormControlCaptcha extends \FormCaptcha
     {
         if ($this->formcontrol_template) {
             $this->strTemplate = $this->formcontrol_template;
-
-            if ($this->strQuestion == '') {
-                $this->setQuestion();
-            }
         }
 
         return parent::parse($arrAttributes);
