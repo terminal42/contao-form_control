@@ -1,0 +1,9 @@
+
+<?php if ($this->type == 'regular'): ?>
+<input type="submit" id="ctrl_<?php echo $this->id; ?>" class="submit<?php echo $this->class; ?>" value="<?php echo $this->value; ?>"<?php echo $this->attributes; ?> />
+<?php endif; ?>
+
+<?php if ($this->type == 'image'): ?>
+<input type="image" src="<?php echo $this->src; ?>" id="ctrl_<?php echo $this->id; ?>" class="submit<?php echo $this->class; ?>" title="<?php echo $this->title; ?>" alt="<?php echo $this->alt; ?>"<?php echo $this->attributes; ?> />
+<?php endif; ?>
+

@@ -1,0 +1,4 @@
+
+<input type="file" name="<?php echo $this->name; ?>" id="ctrl_<?php echo $this->id; ?>" class="upload<?php echo $this->class; ?>"<?php echo $this->attributes; ?>>
+
+<?php echo $this->submit; ?>

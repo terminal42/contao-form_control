@@ -1,0 +1,18 @@
+
+<select name="<?php echo $this->name; ?>" id="ctrl_<?php echo $this->id; ?>" class="<?php echo $this->class; ?>"<?php echo $this->attributes; ?>>
+    <?php foreach ($this->options as $option): ?>
+    <?php if ($option['type'] == 'group_start'): ?>
+    <optgroup label="<?php echo $option['label']; ?>">
+    <?php endif; ?>
+
+    <?php if ($option['type'] == 'option'): ?>
+    <option value="<?php echo $option['value']; ?>"<?php echo $option['selected']; ?>><?php echo $option['label']; ?></option>
+    <?php endif; ?>
+
+    <?php if ($option['type'] == 'group_end'): ?>
+    </optgroup>
+    <?php endif; ?>
+    <?php endforeach; ?>
+</select>
+
+<?php echo $this->submit; ?>

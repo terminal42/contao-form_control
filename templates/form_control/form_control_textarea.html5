@@ -1,0 +1,4 @@
+
+<textarea name="<?php echo $this->name; ?>" id="ctrl_<?php echo $this->id; ?>" class="textarea<?php echo $this->class; ?>" rows="<?php echo $this->rows; ?>" cols="<?php echo $this->cols; ?>"<?php echo $this->attributes; ?>><?php echo $this->value; ?></textarea>
+
+<?php echo $this->submit; ?>
