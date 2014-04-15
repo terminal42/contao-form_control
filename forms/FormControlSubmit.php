@@ -14,6 +14,7 @@ namespace FormControl;
 
 class FormControlSubmit extends \FormSubmit
 {
+    use FormControlHelperTrait;
 
     /**
      * Parse the template file and return it as string

@@ -14,6 +14,7 @@ namespace FormControl;
 
 class FormControlHidden extends \FormHidden
 {
+    use FormControlHelperTrait;
 
     /**
      * Parse the template file and return it as string

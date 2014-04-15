@@ -21,6 +21,7 @@ ClassLoader::addNamespace('FormControl');
  */
 ClassLoader::addClasses(array
 (
+    'FormControl\FormControlHelperTrait'    => 'system/modules/form_control/forms/FormControlHelperTrait.php',
     'FormControl\FormControlCaptcha'        => 'system/modules/form_control/forms/FormControlCaptcha.php',
     'FormControl\FormControlCheckBox'       => 'system/modules/form_control/forms/FormControlCheckBox.php',
     'FormControl\FormControlFieldset'       => 'system/modules/form_control/forms/FormControlFieldset.php',

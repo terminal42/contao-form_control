@@ -14,6 +14,7 @@ namespace FormControl;
 
 class FormControlFieldset extends \FormFieldset
 {
+    use FormControlHelperTrait;
 
     /**
      * Parse the template file and return it as string

@@ -14,6 +14,7 @@ namespace FormControl;
 
 class FormControlCaptcha extends \FormCaptcha
 {
+    use FormControlHelperTrait;
 
     /**
      * Parse the template file and return it as string

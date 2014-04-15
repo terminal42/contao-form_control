@@ -14,6 +14,7 @@ namespace FormControl;
 
 class FormControlCheckBox extends \FormCheckBox
 {
+    use FormControlHelperTrait;
 
     /**
      * Parse the template file and return it as string

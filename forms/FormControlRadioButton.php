@@ -14,6 +14,7 @@ namespace FormControl;
 
 class FormControlRadioButton extends \FormRadioButton
 {
+    use FormControlHelperTrait;
 
     /**
      * Parse the template file and return it as string

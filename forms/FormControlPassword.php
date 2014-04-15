@@ -14,6 +14,7 @@ namespace FormControl;
 
 class FormControlPassword extends \FormPassword
 {
+    use FormControlHelperTrait;
 
     /**
      * Parse the template file and return it as string

@@ -14,6 +14,7 @@ namespace FormControl;
 
 class FormControlSelectMenu extends \FormSelectMenu
 {
+    use FormControlHelperTrait;
 
     /**
      * Parse the template file and return it as string

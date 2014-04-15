@@ -14,6 +14,7 @@ namespace FormControl;
 
 class FormControlFileUpload extends \FormFileUpload
 {
+    use FormControlHelperTrait;
 
     /**
      * Parse the template file and return it as string

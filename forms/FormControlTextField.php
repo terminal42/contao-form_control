@@ -14,6 +14,7 @@ namespace FormControl;
 
 class FormControlTextField extends \FormTextField
 {
+    use FormControlHelperTrait;
 
     /**
      * Parse the template file and return it as string
