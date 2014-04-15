@@ -21,14 +21,12 @@ class FormControlCaptcha extends \FormCaptcha
      * @param array
      * @return string
      */
-    public function parse($arrAttributes=null)
+    public function parse($arrAttributes = null)
     {
-        if ($this->formcontrol_template)
-        {
+        if ($this->formcontrol_template) {
             $this->strTemplate = $this->formcontrol_template;
 
-            if ($this->strQuestion == '')
-            {
+            if ($this->strQuestion == '') {
                 $this->setQuestion();
             }
         }

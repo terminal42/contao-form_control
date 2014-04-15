@@ -21,17 +21,15 @@ class FormControlTextArea extends \FormTextArea
      * @param array
      * @return string
      */
-    public function parse($arrAttributes=null)
+    public function parse($arrAttributes = null)
     {
-        if ($this->formcontrol_template)
-        {
+        if ($this->formcontrol_template) {
             $this->strTemplate = $this->formcontrol_template;
             global $objPage;
             $arrStrip = array();
 
             // XHTML does not support maxlength
-            if ($objPage->outputFormat == 'xhtml')
-            {
+            if ($objPage->outputFormat == 'xhtml') {
                 $arrStrip[] = 'maxlength';
             }
 

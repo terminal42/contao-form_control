@@ -18,8 +18,8 @@ trait FormControlHelperTrait
     /**
      * Override setter to enable getFormControlVars() functionality
      *
-     * @param string    $strKey
-     * @param mixed     $varValue
+     * @param string $strKey
+     * @param mixed  $varValue
      */
     public function __set($strKey, $varValue)
     {

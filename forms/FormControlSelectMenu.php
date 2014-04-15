@@ -21,35 +21,28 @@ class FormControlSelectMenu extends \FormSelectMenu
      * @param array
      * @return string
      */
-    public function parse($arrAttributes=null)
+    public function parse($arrAttributes = null)
     {
-        if ($this->formcontrol_template)
-        {
+        if ($this->formcontrol_template) {
             $this->strTemplate = $this->formcontrol_template;
             $strClass = 'select';
             $blnHasGroups = false;
 
-            if ($this->multiple)
-            {
+            if ($this->multiple) {
                 $this->strName .= '[]';
                 $strClass = 'multiselect';
-            }
-
-            // Make sure there are no multiple options in single mode
-            elseif (is_array($this->varValue))
-            {
+            } // Make sure there are no multiple options in single mode
+            elseif (is_array($this->varValue)) {
                 $this->varValue = $this->varValue[0];
             }
 
             // Add empty option (XHTML) if there are none
-            if (empty($this->arrOptions))
-            {
-                $this->arrOptions = array(array('value'=>'', 'label'=>'-'));
+            if (empty($this->arrOptions)) {
+                $this->arrOptions = array(array('value' => '', 'label' => '-'));
             }
 
             // Chosen
-            if ($this->chosen)
-            {
+            if ($this->chosen) {
                 $strClass .= ' tl_chosen';
             }
 
@@ -57,12 +50,9 @@ class FormControlSelectMenu extends \FormSelectMenu
             $arrOptions = array();
 
             // Generate options
-            foreach ($this->arrOptions as $arrOption)
-            {
-                if ($arrOption['group'])
-                {
-                    if ($blnHasGroups)
-                    {
+            foreach ($this->arrOptions as $arrOption) {
+                if ($arrOption['group']) {
+                    if ($blnHasGroups) {
                         $arrOptions[] = array
                         (
                             'type' => 'group_end'
@@ -71,7 +61,7 @@ class FormControlSelectMenu extends \FormSelectMenu
 
                     $arrOptions[] = array
                     (
-                        'type' => 'group_start',
+                        'type'  => 'group_start',
                         'label' => specialchars($arrOption['label'])
                     );
 
@@ -81,15 +71,14 @@ class FormControlSelectMenu extends \FormSelectMenu
 
                 $arrOptions[] = array
                 (
-                    'type' => 'option',
-                    'value' => $arrOption['value'],
+                    'type'     => 'option',
+                    'value'    => $arrOption['value'],
                     'selected' => $this->isSelected($arrOption),
-                    'label' => $arrOption['label'],
+                    'label'    => $arrOption['label'],
                 );
             }
 
-            if ($blnHasGroups)
-            {
+            if ($blnHasGroups) {
                 $arrOptions[] = array
                 (
                     'type' => 'group_end'

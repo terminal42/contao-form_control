@@ -21,28 +21,22 @@ class FormControlTextField extends \FormTextField
      * @param array
      * @return string
      */
-    public function parse($arrAttributes=null)
+    public function parse($arrAttributes = null)
     {
-        if ($this->formcontrol_template)
-        {
+        if ($this->formcontrol_template) {
             $this->strTemplate = $this->formcontrol_template;
 
             // Hide the Punycode format (see #2750)
-            if ($this->rgxp == 'email' || $this->rgxp == 'friendly' || $this->rgxp == 'url')
-            {
+            if ($this->rgxp == 'email' || $this->rgxp == 'friendly' || $this->rgxp == 'url') {
                 $this->varValue = \Idna::decode($this->varValue);
             }
 
-            if ($this->hideInput)
-            {
+            if ($this->hideInput) {
                 $strType = 'password';
-            }
-            elseif ($this->strFormat != 'xhtml')
-            {
+            } elseif ($this->strFormat != 'xhtml') {
                 // Use the HTML5 types (see #4138)
                 // but not the date, time and datetime types (see #5918)
-                switch ($this->rgxp)
-                {
+                switch ($this->rgxp) {
                     case 'digit':
                         $strType = 'number';
                         break;
@@ -63,9 +57,7 @@ class FormControlTextField extends \FormTextField
                         $strType = 'text';
                         break;
                 }
-            }
-            else
-            {
+            } else {
                 $strType = 'text';
             }
 

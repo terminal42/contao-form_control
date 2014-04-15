@@ -21,31 +21,25 @@ class FormControlSubmit extends \FormSubmit
      * @param array
      * @return string
      */
-    public function parse($arrAttributes=null)
+    public function parse($arrAttributes = null)
     {
-        if ($this->formcontrol_template)
-        {
+        if ($this->formcontrol_template) {
             $this->strTemplate = $this->formcontrol_template;
             $this->type = 'regular';
 
             // Image button
-    		if ($this->imageSubmit && $this->singleSRC != '')
-    		{
-    			$objModel = \FilesModel::findByUuid($this->singleSRC);
+            if ($this->imageSubmit && $this->singleSRC != '') {
+                $objModel = \FilesModel::findByUuid($this->singleSRC);
 
-    			if ($objModel === null)
-    			{
-    				if (!\Validator::isUuid($this->singleSRC))
-    				{
-    					return '<p class="error">'.$GLOBALS['TL_LANG']['ERR']['version2format'].'</p>';
-    				}
-    			}
-    			elseif (is_file(TL_ROOT . '/' . $objModel->path))
-    			{
+                if ($objModel === null) {
+                    if (!\Validator::isUuid($this->singleSRC)) {
+                        return '<p class="error">' . $GLOBALS['TL_LANG']['ERR']['version2format'] . '</p>';
+                    }
+                } elseif (is_file(TL_ROOT . '/' . $objModel->path)) {
                     $this->type = 'image';
                     $this->src = $objModel->path;
-    			}
-    		}
+                }
+            }
         }
 
         return parent::parse($arrAttributes);

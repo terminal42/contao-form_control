@@ -21,25 +21,23 @@ class FormControlRadioButton extends \FormRadioButton
      * @param array
      * @return string
      */
-    public function parse($arrAttributes=null)
+    public function parse($arrAttributes = null)
     {
-        if ($this->formcontrol_template)
-        {
+        if ($this->formcontrol_template) {
             $this->strTemplate = $this->formcontrol_template;
 
             // Generate options
-            foreach ($this->arrOptions as $i => $arrOption)
-            {
+            foreach ($this->arrOptions as $i => $arrOption) {
                 $arrOptions[] = array
                 (
-                    'name' => $this->strName . ((count($this->arrOptions) > 1) ? '[]' : ''),
-                    'id' => $this->strId.'_'.$i,
-                    'value' => $arrOption['value'],
-                    'checked' => $this->isChecked($arrOption),
+                    'name'       => $this->strName . ((count($this->arrOptions) > 1) ? '[]' : ''),
+                    'id'         => $this->strId . '_' . $i,
+                    'value'      => $arrOption['value'],
+                    'checked'    => $this->isChecked($arrOption),
                     'attributes' => $this->getAttributes(),
-                    'label' => $arrOption['label'],
-                    'label_id' => $this->strId.'_'.$i,
-                    'label_for' => $this->strId.'_'.$i,
+                    'label'      => $arrOption['label'],
+                    'label_id'   => $this->strId . '_' . $i,
+                    'label_for'  => $this->strId . '_' . $i,
                 );
             }
 
